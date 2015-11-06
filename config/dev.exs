@@ -40,3 +40,5 @@ config :twitter_geolocation, TwitterGeolocation.Repo,
   database: "twitter_geolocation_dev",
   hostname: "localhost",
   pool_size: 10
+
+import_config "dev.secret.exs"
