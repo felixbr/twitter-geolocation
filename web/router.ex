@@ -19,6 +19,12 @@ defmodule TwitterGeolocation.Router do
     get "/", PageController, :index
   end
 
+  scope "/api", TwitterGeolocation do
+    pipe_through :api
+
+    get "/ping", PageController, :ping
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", TwitterGeolocation do
   #   pipe_through :api

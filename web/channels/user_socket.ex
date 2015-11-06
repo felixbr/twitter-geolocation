@@ -2,7 +2,7 @@ defmodule TwitterGeolocation.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "rooms:*", TwitterGeolocation.RoomChannel
+  channel "tweets:stream", TwitterGeolocation.TweetsChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
