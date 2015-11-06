@@ -13,3 +13,15 @@ config :twitter_geolocation, TwitterGeolocation.Repo,
   password: "postgres",
   database: "twitter_geolocation_prod",
   pool_size: 20
+
+config :extwitter, :oauth, [
+  consumer_key: "",
+  consumer_secret: "",
+  access_token: "",
+  access_token_secret: ""
+]
+
+config :twitter_geolocation, :mapbox, [
+  id: "",
+  access_token: ""
+]
