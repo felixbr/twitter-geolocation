@@ -13,7 +13,7 @@ defmodule TwitterGeolocation do
       worker(TwitterGeolocation.Repo, []),
       # Here you could define other workers and supervisors as children
       # worker(TwitterGeolocation.Worker, [arg1, arg2, arg3]),
-      worker(TwitterGeolocation.TwitterStream, [])
+      supervisor(TwitterGeolocation.TwitterStream.CollectorSupervisor, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
