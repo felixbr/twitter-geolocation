@@ -7,13 +7,11 @@ defmodule TwitterGeolocation do
     import Supervisor.Spec, warn: false
 
     children = [
+      supervisor(TwitterGeolocation.TwitterStream.Supervisor, []),
       # Start the endpoint when the application starts
       supervisor(TwitterGeolocation.Endpoint, []),
       # Start the Ecto repository
       worker(TwitterGeolocation.Repo, []),
-      # Here you could define other workers and supervisors as children
-      # worker(TwitterGeolocation.Worker, [arg1, arg2, arg3]),
-      supervisor(TwitterGeolocation.TwitterStream.CollectorSupervisor, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

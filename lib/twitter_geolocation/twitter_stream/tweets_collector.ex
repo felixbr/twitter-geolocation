@@ -1,15 +1,22 @@
 defmodule TwitterGeolocation.TwitterStream.TweetsCollector do
-  use GenServer
 
   def start_link(opts \\ []) do
-    # used so this process doesn't exit immediately
-    GenServer.start_link(__MODULE__, :ok, opts)
+    Agent.start_link(fn -> HashSet.new end, name: :tweets_collector_subscribers)
+
+    start_streaming
+    {:ok, self}
   end
 
-  def init(:ok) do
-    IO.puts "init streaming"
-    start_streaming
-    {:ok, HashDict.new}
+  def subscribe(pid) do
+    Agent.update :tweets_collector_subscribers, fn subscribers ->
+      Set.put subscribers, pid
+    end
+  end
+
+  def unsubscribe(pid) do
+    Agent.update :tweets_collector_subscribers, fn subscribers ->
+      Set.remove subscribers, pid
+    end
   end
 
   defp start_streaming do
@@ -30,6 +37,8 @@ defmodule TwitterGeolocation.TwitterStream.TweetsCollector do
   end
 
   defp broadcast_tweet(tweet) do
-    TwitterGeolocation.Endpoint.broadcast!("tweets:stream", "new_tweet", %{body: tweet})
+    subscribers = Agent.get(:tweets_collector_subscribers, &(&1))
+
+    Enum.each subscribers, fn subscriber -> send subscriber, tweet end
   end
 end

@@ -1,12 +1,18 @@
 defmodule TwitterGeolocation.TweetsChannel do
   use TwitterGeolocation.Web, :channel
 
+  alias TwitterGeolocation.TwitterStream.TweetsBuffer
+
   def join("tweets:stream", payload, socket) do
     {:ok, socket}
   end
 
+  def handle_in("retrieve_buffered_tweets", _payload, socket) do
+    tweets = TweetsBuffer.to_list :tweets_buffer
+    {:reply, {:ok, %{body: tweets}}, socket}
+  end
   def handle_in(event, payload, socket) do
-    IO.puts payload
+    IO.inspect payload
     {:noreply, socket}
   end
 

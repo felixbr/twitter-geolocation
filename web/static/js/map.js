@@ -13,13 +13,31 @@ $(() => {
       accessToken: mapboxAccessToken
   }).addTo(map);
 
-  channel.on("new_tweet", payload => {
-    let tweet = payload['body'];
-
+  let addMarkerForTweet = (tweet) => {
     let coords = tweet['geo']['coordinates'];
-    console.log(coords);
 
     let marker = L.marker(coords).addTo(map);
     marker.bindPopup(tweet['text']).openPopup();
+  }
+
+  channel.on("new_tweet", payload => {
+    let tweet = payload['body'];
+
+    addMarkerForTweet(tweet);
   });
+
+  channel.join()
+    .receive("error", resp => { console.log("Unable to join", resp) })
+    .receive("ok", resp => {
+      console.log("Joined successfully", resp);
+
+      channel.push("retrieve_buffered_tweets", {})
+        .receive("error", resp => { console.log("Unable to retrieve buffered tweets", resp) })
+        .receive("ok", payload => {
+          console.log("Received buffered tweets");
+
+          payload['body'].map(addMarkerForTweet);
+        });
+    });
+
 });

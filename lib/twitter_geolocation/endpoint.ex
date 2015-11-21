@@ -36,4 +36,8 @@ defmodule TwitterGeolocation.Endpoint do
     signing_salt: "aqzp2pAN"
 
   plug TwitterGeolocation.Router
+
+  def broadcast_tweet!(tweet) do
+    broadcast!("tweets:stream", "new_tweet", %{body: tweet})
+  end
 end

@@ -17,3 +17,5 @@ config :twitter_geolocation, TwitterGeolocation.Repo,
   database: "twitter_geolocation_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+import_config "dev.secret.exs"
