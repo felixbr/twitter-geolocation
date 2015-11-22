@@ -37,7 +37,8 @@ defmodule TwitterGeolocation.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:cowboy, "~> 1.0"},
      {:oauth, github: "tim/erlang-oauth"},
-     {:extwitter, "~> 0.5"}]
+     {:extwitter, "~> 0.5"},
+     {:exrm, "~> 0.18.1"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
