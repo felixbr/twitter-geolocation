@@ -13,7 +13,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :twitter_geolocation, TwitterGeolocation.Endpoint,
   http: [port: 4000],
-  url: [host: "localhost"],
+  url: [host: System.get_env("HOSTNAME")],
   check_origin: false,  # not important for this demo
   cache_static_manifest: "priv/static/manifest.json",
   server: true
