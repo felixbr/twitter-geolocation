@@ -4,13 +4,13 @@ defmodule TwitterGeolocation.Mixfile do
   def project do
     [app: :twitter_geolocation,
      version: "0.0.1",
-     elixir: "~> 1.0",
+     elixir: "~> 1.2",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     aliases: aliases,
-     deps: deps]
+     aliases: aliases(),
+     deps: deps()]
   end
 
   # Configuration for the OTP application.
@@ -30,15 +30,16 @@ defmodule TwitterGeolocation.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.0.3"},
-     {:phoenix_ecto, "~> 1.1"},
-     {:postgrex, "~> 0.11.0"},
-     {:phoenix_html, "~> 2.1"},
-     {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:cowboy, "~> 1.0"},
+    [{:phoenix, "~> 1.2"},
+     {:phoenix_ecto, "1.2.0"},
+     {:postgrex, "0.11.0"},
+     {:phoenix_html, "2.6.0"},
+     {:phoenix_live_reload, "1.0.3", only: :dev},
+     {:cowboy, "1.0.4"},
      {:oauth, github: "tim/erlang-oauth"},
-     {:extwitter, "~> 0.5"},
-     {:exrm, "~> 0.18.1"}]
+     {:extwitter, "0.6.2"}
+  #   {:exrm, "0.18.1"}
+   ]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
