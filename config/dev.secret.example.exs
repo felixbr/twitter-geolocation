@@ -8,6 +8,6 @@ config :extwitter, :oauth, [
 ]
 
 config :twitter_geolocation, :mapbox, [
-  id: "",
+  id: "mapbox.satellite",
   access_token: ""
 ]
