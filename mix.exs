@@ -37,7 +37,8 @@ defmodule TwitterGeolocation.Mixfile do
      {:phoenix_live_reload, "1.0.3", only: :dev},
      {:cowboy, "1.0.4"},
      {:oauth, github: "tim/erlang-oauth"},
-     {:extwitter, "0.6.2"}
+     {:poison, "~> 2.0", override: true},
+     {:extwitter, "0.8.3"}
   #   {:exrm, "0.18.1"}
    ]
   end
