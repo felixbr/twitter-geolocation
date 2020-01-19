@@ -19,7 +19,7 @@ defmodule TwitterGeolocation.MixProject do
   def application do
     [
       mod: {TwitterGeolocation.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :extwitter]
     ]
   end
 
@@ -38,7 +38,8 @@ defmodule TwitterGeolocation.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:extwitter, "0.8.6"}
     ]
   end
 end

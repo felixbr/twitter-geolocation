@@ -2,7 +2,7 @@ defmodule TwitterGeolocationWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", TwitterGeolocationWeb.RoomChannel
+  channel "tweets:stream", TwitterGeolocationWeb.TweetsChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After

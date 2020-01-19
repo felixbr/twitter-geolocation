@@ -8,6 +8,7 @@ defmodule TwitterGeolocation.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
+      TwitterGeolocation.TwitterStream.Supervisor,
       # Start the endpoint when the application starts
       TwitterGeolocationWeb.Endpoint
       # Starts a worker by calling: TwitterGeolocation.Worker.start_link(arg)

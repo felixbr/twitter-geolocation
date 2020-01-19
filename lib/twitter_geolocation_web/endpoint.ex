@@ -43,4 +43,10 @@ defmodule TwitterGeolocationWeb.Endpoint do
     signing_salt: "ulhMbiaY"
 
   plug TwitterGeolocationWeb.Router
+
+  def broadcast_tweet!(tweet) do
+    #IO.puts "broadcasting tweet: #{tweet.text}"
+
+    broadcast!("tweets:stream", "new_tweet", %{body: tweet})
+  end
 end
