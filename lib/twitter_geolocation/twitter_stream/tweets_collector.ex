@@ -20,6 +20,7 @@ defmodule TwitterGeolocation.TwitterStream.TweetsCollector do
   end
 
   defp start_streaming do
+    IO.puts "connecting to twitter stream"
     # if the stream crashes, crash this process
     spawn_link fn ->
       ExTwitter.stream_sample
